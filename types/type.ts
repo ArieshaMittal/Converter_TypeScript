@@ -1,32 +1,17 @@
-export type lengthType = "TARGET_LENGTH" | "BASE_LENGTH";
-export type weightType = "BASE_WEIGHT" | "TARGET_WEIGHT";
-export type categoryType = "LENGTH" | "WEIGHT";
-export type lengthUnits = "MM" | "CM" | "M";
-export type weightUnits = "G" | "KG" | "POUND";
+export type Category = "LENGTH" | "WEIGHT";
 
-export type lengthUnitConversion = {
-    MM: number;
-    CM: number;
-    M: number;
+export type lenType = "MM" | "CM" | "M";
+export type weightType = "KG" | "G" | "POUND";
+
+export type quantity = {
+    value: number,
+    qtype: Category
+    qunit: lenType | weightType
 }
 
-export type weightUnitConversion = {
-    G: number;
-    KG: number;
-    POUND: number;
+export type conversionScale = {
+    [key in Category] : {
+        [key in (lenType | weightType | string)] : number
+    }
 }
 
-export type ConvertLength = {
-    [key in lengthType]: lengthUnitConversion; 
-}
-
-export type ConvertWeight = {
-    [key in weightType]: weightUnitConversion; 
-}
-
-
-export type unit = {
-    value: number;
-    category: categoryType;
-    type: lengthUnits | weightUnits;
-};
